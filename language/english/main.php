@@ -41,12 +41,6 @@ define("_MD_QUERIES_APPROVED_DSC", "Is query approved for public display?");
 define("_MD_QUERIES_POSTED", "Post Date");
 define("_MD_QUERIES_POSTED_DSC", "");
 
-define("_MD_QUERIES_CONV1", "Conversion Data 1");
-define("_MD_QUERIES_CONV1_DSC", "");
-
-define("_MD_QUERIES_CONV2", "Conversion Data 2");
-define("_MD_QUERIES_CONV2_DSC", "");
-
 // messages
 
 define("_MD_QUERIES_NO_ANON", "Anonymous posting is not allowed. Please log in.");

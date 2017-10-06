@@ -109,14 +109,6 @@ if (isset($_POST['querytext'])) {
     $query_querytext = $_POST['querytext'];
 }
 
-$query_conversion_data_1='';
-if (isset($_POST['conversion_data_1'])) {
-    $query_conversion_data_1 = $_POST['conversion_data_1'];
-}
-$query_conversion_data_2='';
-if (isset($_POST['conversion_data_2'])) {
-    $query_conversion_data_2 = $_POST['conversion_data_2'];
-}
 $query_approved=0;
 if (isset($_POST['approved'])) {
     $query_approved = $_POST['approved'];
@@ -138,7 +130,7 @@ if (isset($_GET['id'])) {
 }
 
 if ($id!=0) {
-    $sql="SELECT id, uid, name, email, title, querytext, comment_count, approved, FROM_UNIXTIME(posted) as postdate, conversion_data_1, conversion_data_2";
+    $sql="SELECT id, uid, name, email, title, querytext, comment_count, approved, FROM_UNIXTIME(posted) as postdate";
     $sql.=" FROM ".$xoopsDB->prefix('queries_query');
     $sql.=" WHERE id = $id ";
     $result = $xoopsDB->query($sql);
@@ -150,8 +142,6 @@ if ($id!=0) {
         $query_email=$myrow['email'];
         $query_title=$myrow['title'];
         $query_querytext=$myrow['querytext'];
-        $query_conversion_data_1=$myrow['conversion_data_1'];
-        $query_conversion_data_2=$myrow['conversion_data_2'];
         $query_approved=$myrow['approved'];
         $query_posted=$myrow['postdate'];
         $query_comment_count=$myrow['comment_count'];
@@ -167,8 +157,6 @@ if ($id!=0) {
     $query_email=cleaner($query_email);
     $query_title=cleaner($query_title);
     $query_querytext=cleaner($query_querytext);
-    $query_conversion_data_1=cleaner($query_conversion_data_1);
-    $query_conversion_data_2=cleaner($query_conversion_data_2);
     $query_approved=intval($query_approved);
     if ($query_approved) {
         $query_approved=1;
@@ -255,8 +243,6 @@ if ($op == 'update') {
     $query_email = $xoopsDB->escape($query_email);
     $query_title = $xoopsDB->escape($query_title);
     $query_querytext = $xoopsDB->escape($query_querytext);
-    $query_conversion_data_1 = $xoopsDB->escape($query_conversion_data_1);
-    $query_conversion_data_2 = $xoopsDB->escape($query_conversion_data_2);
     $query_posted = $xoopsDB->escape($query_posted);
 
     $setapprove='0';
@@ -297,8 +283,8 @@ if ($op == 'update') {
             } else {
                 $timestamp="'$query_posted'";
             }
-            $sql.=" (uid, name, email, title, querytext, comment_count, approved, posted, conversion_data_1, conversion_data_2) ";
-            $sql.="VALUES ($query_uid, '$query_name', '$query_email', '$query_title', '$query_querytext', $query_comment_count, $query_approved, UNIX_TIMESTAMP($timestamp), '$query_conversion_data_1', '$query_conversion_data_1') ";
+            $sql.=" (uid, name, email, title, querytext, comment_count, approved, posted) ";
+            $sql.="VALUES ($query_uid, '$query_name', '$query_email', '$query_title', '$query_querytext', $query_comment_count, $query_approved, UNIX_TIMESTAMP($timestamp)) ";
         }
 
         $result = $xoopsDB->queryF($sql);
@@ -329,7 +315,7 @@ if ($op == 'update') {
             } else {
                 $timestamp="'$query_posted'";
             }
-            $sql.=" SET uid=$query_uid, name='$query_name', email='$query_email', title='$query_title', querytext='$query_querytext', comment_count=$query_comment_count, approved=$query_approved, posted=UNIX_TIMESTAMP($timestamp), conversion_data_1='$query_conversion_data_1', conversion_data_2='$query_conversion_data_2' ";
+            $sql.=" SET uid=$query_uid, name='$query_name', email='$query_email', title='$query_title', querytext='$query_querytext', comment_count=$query_comment_count, approved=$query_approved, posted=UNIX_TIMESTAMP($timestamp) ";
         }
         $sql.=" WHERE id=$query_id ";
         $result = $xoopsDB->queryF($sql);
@@ -349,8 +335,6 @@ if ($op == 'update') {
     $query_email=cleaner($query_email);
     $query_title=cleaner($query_title);
     $query_querytext=cleaner($query_querytext);
-    $query_conversion_data_1=cleaner($query_conversion_data_1);
-    $query_conversion_data_2=cleaner($query_conversion_data_2);
     $query_posted=cleaner($query_posted);
 
     $op='display';
@@ -415,12 +399,6 @@ if ($op=='display') {
 
         $caption = _MD_QUERIES_COMMENTS . $joiner1 . _MD_QUERIES_COMMENTS_DSC . $joiner2;
         $form->addElement(new XoopsFormText($caption, 'comment_count', 10, 15, htmlspecialchars($query_comment_count, ENT_QUOTES)));
-
-        $caption = _MD_QUERIES_CONV1 . $joiner1 . _MD_QUERIES_CONV1_DSC . $joiner2;
-        $form->addElement(new XoopsFormText($caption, 'conversion_data_1', 50, 250, htmlspecialchars($query_conversion_data_1, ENT_QUOTES)));
-
-        $caption = _MD_QUERIES_CONV2 . $joiner1 . _MD_QUERIES_CONV2_DSC . $joiner2;
-        $form->addElement(new XoopsFormText($caption, 'conversion_data_2', 50, 250, htmlspecialchars($query_conversion_data_2, ENT_QUOTES)));
     }
 
     $form->addElement(new XoopsFormHidden('id', $query_id));
