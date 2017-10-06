@@ -1,0 +1,34 @@
+queries_query:
+    options: 'ENGINE=MyISAM DEFAULT CHARSET=utf8'
+    columns:
+        -
+            name: id
+            attributes: ' int(8) unsigned  NOT NULL auto_increment'
+        -
+            name: uid
+            attributes: ' int(8) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: name
+            attributes: ' varchar(60)  NOT NULL  DEFAULT '''' '
+        -
+            name: email
+            attributes: ' varchar(60)  NOT NULL  DEFAULT '''' '
+        -
+            name: title
+            attributes: ' varchar(255)  NOT NULL  DEFAULT '''' '
+        -
+            name: querytext
+            attributes: ' text  NOT NULL '
+        -
+            name: comment_count
+            attributes: ' smallint(5) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: approved
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: posted
+            attributes: ' int(10)  NOT NULL '
+    keys:
+        PRIMARY:
+            columns: id
+            unique: true
