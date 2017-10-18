@@ -22,10 +22,10 @@
  * @param  XoopsModule $module
  * @return bool
  */
-function xoops_module_pre_update_surnames(XoopsModule $module)
+function xoops_module_pre_update_queries(XoopsModule $module)
 {
-    XoopsLoad::load('migrate', 'surnames');
-    $migrate = new SurnamesMigrate();
+    XoopsLoad::load('migrate', 'queries');
+    $migrate = new QueriesMigrate();
     $migrate->synchronizeSchema();
 
     return true;

@@ -33,6 +33,9 @@ $modversion['adminmenu'] = 'admin/menu.php';
 // Menu
 $modversion['hasMain'] = 1;
 
+// Install/Update
+$modversion['onUpdate'] = 'include/onupdate.php';
+
 // Search
 $modversion['hasSearch'] = 1;
 $modversion['search']['file'] = 'include/search.php';
