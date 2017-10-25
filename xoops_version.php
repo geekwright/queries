@@ -2,9 +2,10 @@
 
 $modversion['dirname'] = basename(__DIR__);
 
-$modversion['name'] = _MI_QUERIES_NAME;
-$modversion['version'] = '1.0.0';
-$modversion['description'] = _MI_QUERIES_DESC;
+$modversion['name']                = _MI_QUERIES_NAME;
+$modversion['version']             = '1.0.0';
+$modversion['description']         = _MI_QUERIES_DESC;
+$modversion['author']              = 'geekwright';
 $modversion['credits']             = 'Richard Griffith';
 $modversion['min_php']             = '5.3.7';
 $modversion['min_xoops']           = '2.5.9';
